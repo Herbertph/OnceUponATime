@@ -60,6 +60,27 @@
   .button:hover {
     background-color: #0056b3; /* Cor de fundo ao passar o mouse */
   }
+
+  .confirmButton {
+    width: 100px; /* Define uma largura fixa */
+  height: 40px; /* Define uma altura fixa */
+  padding: 10px 20px; /* Ajuste conforme necessário para centralizar o texto */
+  border: none;
+  border-radius: 5px;
+  background-color: #0ece2e;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex; /* Adiciona display flex para centralizar o conteúdo */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  text-align: center; /* Garante que o texto esteja centralizado */
+  overflow: hidden; /* Esconde o texto que exceder o tamanho do botão */
+  white-space: nowrap; /* Impede que o texto ocupe mais de uma linha */
+  text-overflow: ellipsis; /* Adiciona "..." se o texto exceder o tamanho do botão */
+  margin: -1px;
+  }
+
 </style>
 </head>
 <body>
@@ -85,7 +106,7 @@
     </div>
     <h3>Ready for an Adventure?</h3>
     <div class="button-container">
-      <button class="button">V</button>
+      <button class="confirmButton">V</button>
       <button class="button">Reset</button>
      
   </div>

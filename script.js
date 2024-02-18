@@ -15,7 +15,6 @@ function setupButtonEvents(buttons) {
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const classes = ['Pirate', 'Gladiator', 'King', 'Wizard', 'Knight', 'Dragon', 'Elf', 'Dwarf', 'Sorcerer', 'Fairy'];
   const buttons = document.querySelectorAll('.button-container')[0].children; 
@@ -96,4 +95,41 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonsToSave[index].textContent = itemName;
   });
   setupButtonEvents(buttonsToSave); 
+
+ 
+    // Evento de clique para o botão "V"
+document.querySelector('.button-container:last-child button:first-child').addEventListener('click', () => {
+  // Verifica se todas as seleções foram feitas
+  const selectedClass = document.querySelectorAll('.button-container')[0].querySelector('.button:not([style="display: none;"])');
+  const selectedItem = document.querySelectorAll('.button-container')[1].querySelector('.button:not([style="display: none;"])');
+  const selectedToSave = document.querySelectorAll('.button-container')[2].querySelector('.button:not([style="display: none;"])');
+
+  if (selectedClass && selectedItem && selectedToSave) {
+    const requestData = {
+      'selected_class': selectedClass.textContent,
+      'selected_item': selectedItem.textContent,
+      'selected_to_save': selectedToSave.textContent
+    };
+
+    // Envia uma solicitação POST para o servidor Flask
+    fetch('http://127.0.0.1:5000/gerar_historia', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Limpa o conteúdo da div "celular"
+      document.querySelector('.celular').innerHTML = '';
+      // Exibe a história gerada na sua página
+      document.querySelector('.celular').innerHTML += `<p>${data.story}</p>`;
+    })
+    .catch(error => console.error('Error:', error));
+  } else {
+    // Exibe uma mensagem para o usuário fazer todas as seleções antes de continuar
+    alert('Por favor, faça todas as seleções antes de gerar a história.');
+  }
+});
 });
