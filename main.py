@@ -4,7 +4,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-openai_client = OpenAI(api_key="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")
+openai_client = OpenAI(api_key="-")
 
 @app.route('/gerar_historia', methods=['POST'])
 def gerar_historia():
